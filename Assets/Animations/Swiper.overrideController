@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Swiper
+  m_Controller: {fileID: 9100000, guid: 9e74828ef59d66447a3b209d662f1269, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c09ecc99f134b1a4494543353dccabeb, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 16ef0637b66382847abef3cff54bc17a, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: ee49a60818b516644a73bdac8d0162c9, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 9eed5d65182536e47b17d45190ab4bac, type: 3}

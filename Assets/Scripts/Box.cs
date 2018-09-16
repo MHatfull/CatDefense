@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CatDefence
+namespace CatDefense
 {
 	public class Box : MonoBehaviour
 	{
-		private static int _health = 30;
-
 		private void OnTriggerEnter(Collider other)
 		{
 			if (!other.gameObject.CompareTag("Enemy")) return;
-			_health--;
-			Debug.Log(_health);
+			GlobalData.Health--;
+			Debug.Log(GlobalData.Health);
 			Destroy(other.gameObject);
+			if(GlobalData.Health <= 0) {Destroy(gameObject);}
 		}
 	}
 }

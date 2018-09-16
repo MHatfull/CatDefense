@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136376643404355480}
   - component: {fileID: 195467641290203448}
   - component: {fileID: 54384167870098870}
+  - component: {fileID: 114679438313081440}
   m_Layer: 0
   m_Name: Creep
   m_TagString: Enemy
@@ -101,6 +102,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114679438313081440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451987195252806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762af08690681834ba17f4621853093e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _value: 10
 --- !u!136 &136376643404355480
 CapsuleCollider:
   m_ObjectHideFlags: 1

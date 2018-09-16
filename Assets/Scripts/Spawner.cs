@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace CatDefence
+namespace CatDefense
 {
 	public class Spawner : MonoBehaviour
 	{
