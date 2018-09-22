@@ -8,31 +8,28 @@ using UnityEngine.Networking;
 namespace CatDefense
 {
 	public class TowerPlacer : MonoBehaviour
-	{	
-		private Tower _tower;
-		
-		public Tower CurrentTower
-		{
-			get { return _tower; }
-		}
+	{
+		public Tower CurrentTower { get; private set; }
 
 		private void Update()
 		{
-			if(!_tower) return;
+			if(!CurrentTower) return;
 			if (!Input.GetMouseButtonDown(0)) return;
 			if(EventSystem.current.IsPointerOverGameObject()) return;
-			if (GlobalData.Money < _tower.Value) return;
+			if (GlobalData.Money < CurrentTower.Value) return;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			if (!Physics.Raycast(ray, out hit)) return;
 			if (!hit.collider.gameObject.CompareTag("Ground")) return;
-			Instantiate(_tower, hit.point, Quaternion.identity);
-			GlobalData.Money -= _tower.Value;
+			Tower newTower = Instantiate(CurrentTower, hit.point, Quaternion.identity);
+			GlobalData.Money -= CurrentTower.Value;
+			SetCurrentTower(null);
+			FindObjectOfType<TowerSelection>().SelectTower(newTower);
 		}
 
 		public void SetCurrentTower(Tower tower)
 		{
-			_tower = tower;
+			CurrentTower = tower;
 		}
 	}
 }

@@ -10,7 +10,6 @@ namespace CatDefense
 		{
 			if (!other.gameObject.CompareTag("Enemy")) return;
 			GlobalData.Health--;
-			Debug.Log(GlobalData.Health);
 			Destroy(other.gameObject);
 			if(GlobalData.Health <= 0) {Destroy(gameObject);}
 		}

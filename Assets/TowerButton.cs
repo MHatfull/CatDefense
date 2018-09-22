@@ -21,6 +21,7 @@ namespace CatDefense
 
 		void OnClick()
 		{
+			FindObjectOfType<TowerSelection>().RemoveSelection();
 			_placer.SetCurrentTower(_tower);
 		}
 	}

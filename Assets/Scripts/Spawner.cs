@@ -15,6 +15,7 @@ namespace CatDefense
 
 		private void Spawn()
 		{
+			if (!_target) return;
 			NavMeshAgent newCreep = Instantiate(_creep, transform.position, Quaternion.identity);
 			newCreep.SetDestination(_target.position);
 		}

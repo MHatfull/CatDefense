@@ -13,6 +13,8 @@ namespace CatDefense
 		[SerializeField] private int _value = 50;
 
 		private TowerWeapon _weapon;
+		private bool _selected;
+
 		public int Value
 		{
 			get { return _value; }
@@ -35,7 +37,12 @@ namespace CatDefense
 		
 		private void OnMouseExit()
 		{
-			_weapon.DisplayRange(_range, false);
+			_weapon.DisplayRange(_range, _selected);
+		}
+
+		private void OnMouseUpAsButton()
+		{
+			FindObjectOfType<TowerSelection>().SelectTower(this);
 		}
 
 		private void Fire()
@@ -47,6 +54,12 @@ namespace CatDefense
 			_cannonModel.LookAt(closest.transform);
 			_animator.SetTrigger("Fire");
 			_weapon.Fire(closest);
+		}
+
+		public void SetSelected(bool selected)
+		{
+			_selected = selected;
+			_weapon.DisplayRange(_range, selected);
 		}
 	}
 }
