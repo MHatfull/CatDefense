@@ -36,5 +36,10 @@ namespace CatDefense
 		}
 
 		public event Action OnUpgradeSelected;
+
+		public void Collapse()
+		{
+			_buttonContainer.SetActive(false);
+		}
 	}
 }

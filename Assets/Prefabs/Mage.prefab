@@ -1797,6 +1797,7 @@ MonoBehaviour:
   _animator: {fileID: 95053256793556036}
   _range: 10
   _value: 50
+  _upgradeCost: 0a000000140000001e00000028000000
 --- !u!119 &119625600442550274
 Projector:
   m_ObjectHideFlags: 1

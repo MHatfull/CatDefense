@@ -11,10 +11,15 @@ namespace CatDefense
 		[SerializeField] private Animator _animator;
 		[SerializeField] private float _range = 100;
 		[SerializeField] private int _value = 50;
+		[SerializeField] private int[] _upgradeCost;
 
 		private TowerWeapon _weapon;
 		private bool _selected;
-		private int _upgradeLevel = 0;
+
+		public Tower()
+		{
+			UpgradeLevel = 0;
+		}
 
 		public override int Value
 		{
@@ -26,9 +31,11 @@ namespace CatDefense
 			get { return _range; }
 		}
 
-		public int UpgradeLevel
+		public int UpgradeLevel { get; private set; }
+
+		public int UpgradeCost
 		{
-			get { return _upgradeLevel; }
+			get { return _upgradeCost[UpgradeLevel]; }
 		}
 
 		public override Placeable Clone(Vector3 hitPoint)
@@ -82,7 +89,9 @@ namespace CatDefense
 
 		public void Upgrade()
 		{
-			_upgradeLevel++;
+			if (GlobalData.Money < _upgradeCost[UpgradeLevel]) return;
+			GlobalData.Money -= _upgradeCost[UpgradeLevel];
+			UpgradeLevel++;
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace CatDefense
             if (placeable)
             {
                 Tower tower = placeable.GetComponent<Tower>();
-                _rangeRing.SetRange(tower.Range);
+                if(tower) _rangeRing.SetRange(tower.Range);
             }
             CurrentlyPlacing = placeable;
         }

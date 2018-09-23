@@ -10,12 +10,22 @@ namespace CatDefense
     {
         private Tower _currentTower;
         [SerializeField] private Text _text;
+        [SerializeField] private Text _upgradeCost;
         [SerializeField] private UpgradeButton[] _upgradeButtons;
 
         private void Start()
         {
             _text.text = string.Empty;
             ActivateRelevantUpgradeButton(null);
+            foreach (UpgradeButton t in _upgradeButtons)
+            {
+                t.OnUpgradeSelected += () =>
+                {
+                    if(_currentTower) _currentTower.Upgrade();
+                    ActivateRelevantUpgradeButton(_currentTower);
+                    SetUpgradeCostText(_currentTower);
+                };
+            }
         }
 
         public void SelectTower(Tower tower)
@@ -25,15 +35,13 @@ namespace CatDefense
             _currentTower = tower;
             _currentTower.SetSelected(true);
             _text.text = "Selected: " + tower.name;
+            SetUpgradeCostText(tower);
             ActivateRelevantUpgradeButton(tower);
-            for (int i = 0; i < _upgradeButtons.Length; i++)
-            {
-                _upgradeButtons[i].OnUpgradeSelected += () =>
-                {
-                    tower.Upgrade();
-                    ActivateRelevantUpgradeButton(_currentTower);
-                };
-            }
+        }
+
+        private void SetUpgradeCostText(Tower tower)
+        {
+            _upgradeCost.text = "Upgrade cost: " + tower.UpgradeCost;
         }
 
         private void ActivateRelevantUpgradeButton(Tower tower)
@@ -63,6 +71,12 @@ namespace CatDefense
                 _currentTower.SetSelected(false);
             _currentTower = null;
             _text.text = string.Empty;
+            ActivateRelevantUpgradeButton(null);
+            _upgradeCost.text = "Upgrade cost: ";
+            foreach (UpgradeButton upgradeButton in _upgradeButtons)
+            {
+                upgradeButton.Collapse();
+            }
         }
         
     }

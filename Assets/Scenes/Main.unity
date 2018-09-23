@@ -670,7 +670,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -164.70935, y: -58.03062}
+  m_SizeDelta: {x: -165.73, y: -57.92889}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351433358
 MonoBehaviour:
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 458189135}
   - component: {fileID: 458189134}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Upgrade Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,13 +983,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 771808136}
-  m_LocalRotation: {x: 0.36321363, y: 0.35186931, z: -0.150448, w: 0.8494877}
-  m_LocalPosition: {x: -7.56, y: 6.1, z: -9.6}
+  m_LocalRotation: {x: 0.4445877, y: 0.3354606, z: -0.18415424, w: 0.8098736}
+  m_LocalPosition: {x: -7.56, y: 10.42, z: -9.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 46.3, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 57.53, y: 45, z: 0}
 --- !u!114 &771808140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,13 +1519,19 @@ Prefab:
     - target: {fileID: 114931818648018288, guid: 8c6458c1872bc7c489d4ef962c9162f3,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114017436385717354, guid: 8c6458c1872bc7c489d4ef962c9162f3,
         type: 2}
       propertyPath: m_Text
       value: Barricade
       objectReference: {fileID: 0}
+    - target: {fileID: 114900325919881098, guid: 8c6458c1872bc7c489d4ef962c9162f3,
+        type: 2}
+      propertyPath: _toPlace
+      value: 
+      objectReference: {fileID: 114707694944330840, guid: e5107708f86259a4bacc8668dadb3d7d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c6458c1872bc7c489d4ef962c9162f3, type: 2}
   m_IsPrefabAsset: 0
@@ -1805,7 +1811,7 @@ GameObject:
   - component: {fileID: 1608876078}
   - component: {fileID: 1608876079}
   m_Layer: 5
-  m_Name: Selected
+  m_Name: Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1878,6 +1884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 133057141}
+  _upgradeCost: {fileID: 458189134}
   _upgradeButtons:
   - {fileID: 783401906}
   - {fileID: 1512116232}
