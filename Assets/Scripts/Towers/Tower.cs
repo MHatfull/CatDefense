@@ -14,6 +14,7 @@ namespace CatDefense
 
 		private TowerWeapon _weapon;
 		private bool _selected;
+		private int _upgradeLevel = 0;
 
 		public override int Value
 		{
@@ -23,6 +24,11 @@ namespace CatDefense
 		public float Range
 		{
 			get { return _range; }
+		}
+
+		public int UpgradeLevel
+		{
+			get { return _upgradeLevel; }
 		}
 
 		public override Placeable Clone(Vector3 hitPoint)
