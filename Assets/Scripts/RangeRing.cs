@@ -8,7 +8,7 @@ namespace CatDefense
 	public class RangeRing : MonoBehaviour
 	{
 		private Projector _projector;
-		
+
 		private void Awake()
 		{
 			_projector = GetComponent<Projector>();

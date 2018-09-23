@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CatDefense
 {
 	[RequireComponent(typeof(TowerWeapon))]
-	public class Tower : MonoBehaviour
+	public class Tower : Placeable
 	{
 		[SerializeField] private float _fireRate = 1;
 		[SerializeField] private Transform _cannonModel;
@@ -15,9 +15,21 @@ namespace CatDefense
 		private TowerWeapon _weapon;
 		private bool _selected;
 
-		public int Value
+		public override int Value
 		{
 			get { return _value; }
+		}
+
+		public float Range
+		{
+			get { return _range; }
+		}
+
+		public override Placeable Clone(Vector3 hitPoint)
+		{
+			Tower clone = Instantiate(this, hitPoint, Quaternion.identity);
+			clone.SetSelected(true);
+			return clone;
 		}
 
 		private void Awake()

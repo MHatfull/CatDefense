@@ -216,7 +216,7 @@ Prefab:
       objectReference: {fileID: 2055480976}
     - target: {fileID: 1055011504074486, guid: 8c6458c1872bc7c489d4ef962c9162f3, type: 2}
       propertyPath: m_Name
-      value: Mage
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _tower
@@ -231,6 +231,12 @@ Prefab:
     - target: {fileID: 114900325919881098, guid: 8c6458c1872bc7c489d4ef962c9162f3,
         type: 2}
       propertyPath: _tower
+      value: 
+      objectReference: {fileID: 114947717702830334, guid: a4c352d67c568f646b4c9f045990e895,
+        type: 2}
+    - target: {fileID: 114900325919881098, guid: 8c6458c1872bc7c489d4ef962c9162f3,
+        type: 2}
+      propertyPath: _toPlace
       value: 
       objectReference: {fileID: 114947717702830334, guid: a4c352d67c568f646b4c9f045990e895,
         type: 2}
@@ -699,6 +705,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: d982e879ff67b4d3fb6522d08c3cd5af, type: 2}
+--- !u!1001 &773804512
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2055480977}
+    m_Modifications:
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526089413223554, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 967fe46708717cb44b9e35c44fe65874, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &845875729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315483452835172, guid: 4d3a1c6c178c1104e8522e4137201048,
@@ -1023,7 +1075,7 @@ Prefab:
       objectReference: {fileID: 2055480976}
     - target: {fileID: 1055011504074486, guid: 8c6458c1872bc7c489d4ef962c9162f3, type: 2}
       propertyPath: m_Name
-      value: Swiper
+      value: Barricade
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _tower
@@ -1285,6 +1337,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &1602014885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114815390917573588, guid: 967fe46708717cb44b9e35c44fe65874,
+    type: 2}
+  m_PrefabInternal: {fileID: 773804512}
+  m_Script: {fileID: 11500000, guid: 8207ae1cf20076b46ba69104f66ee98c, type: 3}
+--- !u!4 &1602014887 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4389221125896154, guid: 967fe46708717cb44b9e35c44fe65874,
+    type: 2}
+  m_PrefabInternal: {fileID: 773804512}
 --- !u!1 &1608876074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,6 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7f39394e5292a49ad1d0f0b6f0e684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rangeRing: {fileID: 1602014885}
 --- !u!4 &2055480977
 Transform:
   m_ObjectHideFlags: 0
@@ -1638,7 +1702,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 29.796692, y: 1.711402, z: 45.61305}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1602014887}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
