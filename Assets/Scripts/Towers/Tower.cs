@@ -28,7 +28,7 @@ namespace CatDefense
 		public override Placeable Clone(Vector3 hitPoint)
 		{
 			Tower clone = Instantiate(this, hitPoint, Quaternion.identity);
-			clone.SetSelected(true);
+			FindObjectOfType<TowerSelection>().SelectTower(clone);
 			return clone;
 		}
 
