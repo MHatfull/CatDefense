@@ -10,11 +10,12 @@ namespace CatDefense
     {
         private Tower _currentTower;
         [SerializeField] private Text _text;
-        [SerializeField] private Button[] _upgradeButtons;
+        [SerializeField] private UpgradeButton[] _upgradeButtons;
 
         private void Start()
         {
             _text.text = string.Empty;
+            ActivateRelevantUpgradeButton(null);
         }
 
         public void SelectTower(Tower tower)
@@ -24,9 +25,22 @@ namespace CatDefense
             _currentTower = tower;
             _currentTower.SetSelected(true);
             _text.text = "Selected: " + tower.name;
+            ActivateRelevantUpgradeButton(tower);
             for (int i = 0; i < _upgradeButtons.Length; i++)
             {
-                _upgradeButtons[i].interactable = i == tower.UpgradeLevel;
+                _upgradeButtons[i].OnUpgradeSelected += () =>
+                {
+                    tower.Upgrade();
+                    ActivateRelevantUpgradeButton(_currentTower);
+                };
+            }
+        }
+
+        private void ActivateRelevantUpgradeButton(Tower tower)
+        {
+            for (int i = 0; i < _upgradeButtons.Length; i++)
+            {
+                _upgradeButtons[i].interactable = tower && i == tower.UpgradeLevel;
             }
         }
 

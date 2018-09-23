@@ -79,5 +79,10 @@ namespace CatDefense
 			_selected = selected;
 			_weapon.DisplayRange(_range, selected);
 		}
+
+		public void Upgrade()
+		{
+			_upgradeLevel++;
+		}
 	}
 }
