@@ -11,7 +11,6 @@ namespace CatDefense
 		[SerializeField] private float _range = 100;
 		[SerializeField] private int _value = 50;
 		[SerializeField] private int[] _upgradeCost;
-		[SerializeField] private TowerWeapon _weapon;
 		[SerializeField] private RangeRing _rangeRing;
 
 		[SerializeField] private Upgrade _currentUpgrade;
@@ -20,6 +19,8 @@ namespace CatDefense
 			get { return _currentUpgrade; }
 		}
 		
+		private TowerWeapon _weapon;
+
 		private bool _selected;
 
 		public override int Value
@@ -48,7 +49,7 @@ namespace CatDefense
 
 		private void Awake()
 		{
-			_weapon = GetComponent<TowerWeapon>();
+			_weapon = Instantiate(_currentUpgrade.Weapon, _weaponContainer.position, _weaponContainer.rotation, _weaponContainer);
 		}
 
 		private void Start()
@@ -98,7 +99,7 @@ namespace CatDefense
 			UpgradeLevel++;
 			_currentUpgrade = upgrade;
 			Destroy(_weapon.gameObject);
-			_weapon = Instantiate(upgrade.Weapon, Vector3.zero, Quaternion.identity, _weaponContainer);
+			_weapon = Instantiate(upgrade.Weapon, _weaponContainer.position, _weaponContainer.rotation, _weaponContainer);
 		}
 	}
 }

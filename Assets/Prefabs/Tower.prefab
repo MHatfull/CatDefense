@@ -1135,7 +1135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863152653848578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.007, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4903424800075280}
@@ -1791,14 +1791,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireRate: 1
-  _weaponContainer: {fileID: 0}
+  _weaponContainer: {fileID: 4903424800075280}
   _animator: {fileID: 95053256793556036}
   _range: 10
   _value: 50
   _upgradeCost: 0a000000140000001e00000028000000
-  _weapon: {fileID: 0}
-  _rangeRing: {fileID: 0}
-  _currentUpgrade: {fileID: 0}
+  _rangeRing: {fileID: 114886153298692718}
+  _currentUpgrade: {fileID: 11400000, guid: 8178bf4add5913b4f887df94ee8f13d3, type: 2}
 --- !u!119 &119625600442550274
 Projector:
   m_ObjectHideFlags: 1
