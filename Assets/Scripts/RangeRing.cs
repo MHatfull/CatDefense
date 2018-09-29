@@ -6,7 +6,8 @@ namespace CatDefense
 	public class RangeRing : MonoBehaviour
 	{
 		private Projector _projector;
-
+		private Color _color;
+		
 		private void Awake()
 		{
 			_projector = GetComponent<Projector>();
@@ -21,8 +22,16 @@ namespace CatDefense
 
 		public void SetColor(Color color)
 		{
-			_projector.material.SetColor("_EdgeColor", color);
-			_projector.material.SetColor("_FillColor", new Color(color.r, color.g, color.b, color.a * 0.5f));
+			if (color == _color) return;
+			_color = color;
+			Material m = _projector.material;
+			m.SetColor("_EdgeColor", color);
+			m.SetColor("_FillColor", new Color(color.r, color.g, color.b, color.a * 0.5f));
+		}
+
+		public void Enable(bool on)
+		{
+			_projector.enabled = on;
 		}
 	}
 }

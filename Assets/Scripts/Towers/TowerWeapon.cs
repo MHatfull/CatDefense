@@ -12,7 +12,7 @@ namespace CatDefense
 
         public void DisplayRange(float r, bool on)
         {
-            _rangeRing.gameObject.SetActive(on);
+            _rangeRing.Enable(on);
             _rangeRing.SetRange(r);
         }
     }

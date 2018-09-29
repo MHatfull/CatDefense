@@ -12,16 +12,18 @@ namespace CatDefense
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(1)) SetCurrentTower(null);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (!Physics.Raycast(ray, out hit)) return;
             transform.position = hit.point;
-            if (!CurrentlyPlacing) return;
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            if (GlobalData.Money < CurrentlyPlacing.Value) return;
-            if (!hit.collider.gameObject.CompareTag("Ground"))
+            if (!CurrentlyPlacing 
+                || EventSystem.current.IsPointerOverGameObject()
+                || GlobalData.Money < CurrentlyPlacing.Value 
+                || !hit.collider.gameObject.CompareTag("Ground"))
             {
                 _rangeRing.SetColor(_errorColor);
+                if(Input.GetMouseButton(0)) SetCurrentTower(null);
                 return;
             }
             _rangeRing.SetColor(_placingColor);
@@ -33,7 +35,7 @@ namespace CatDefense
 
         public void SetCurrentTower(Placeable placeable)
         {
-            _rangeRing.gameObject.SetActive(placeable);
+            _rangeRing.Enable(placeable);
             if (placeable)
             {
                 Tower tower = placeable.GetComponent<Tower>();
