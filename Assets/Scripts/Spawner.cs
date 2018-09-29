@@ -27,17 +27,14 @@ namespace CatDefense
 
 		private IEnumerator Spawn()
 		{
-			Debug.Log("starting wave " + _waveNumber);
 			if (!_target || NoMoreWaves)
 			{
-				Debug.Log("exiting as no more waves or target dead");
 				if (OnWaveComplete != null) OnWaveComplete();
 				yield break;
 			}
 
 			foreach (Release release in _waves[_waveNumber].Releases)
 			{
-				Debug.Log("this release contains " + release.Size);
 				for (int i = 0; i < release.Size; i++)
 				{
 					yield return new WaitForSeconds(release.ReleaseDelay); 

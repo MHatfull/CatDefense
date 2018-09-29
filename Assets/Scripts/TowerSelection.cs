@@ -8,7 +8,7 @@ namespace CatDefense
 {
     public class TowerSelection : MonoBehaviour
     {
-        private Tower _currentTower;
+        public Tower CurrentTower { get; private set; }
         [SerializeField] private Text _text;
         [SerializeField] private Text _upgradeCost;
         [SerializeField] private UpgradeButton[] _upgradeButtons;
@@ -19,21 +19,21 @@ namespace CatDefense
             ActivateRelevantUpgradeButton(null);
             foreach (UpgradeButton t in _upgradeButtons)
             {
-                t.OnUpgradeSelected += () =>
+                t.OnUpgradeSelected += (upgrade) =>
                 {
-                    if(_currentTower) _currentTower.Upgrade();
-                    ActivateRelevantUpgradeButton(_currentTower);
-                    SetUpgradeCostText(_currentTower);
+                    if(CurrentTower) CurrentTower.Upgrade(upgrade);
+                    ActivateRelevantUpgradeButton(CurrentTower);
+                    SetUpgradeCostText(CurrentTower);
                 };
             }
         }
 
         public void SelectTower(Tower tower)
         {
-            if(_currentTower)
-                _currentTower.SetSelected(false);
-            _currentTower = tower;
-            _currentTower.SetSelected(true);
+            if(CurrentTower)
+                CurrentTower.SetSelected(false);
+            CurrentTower = tower;
+            CurrentTower.SetSelected(true);
             _text.text = "Selected: " + tower.name;
             SetUpgradeCostText(tower);
             ActivateRelevantUpgradeButton(tower);
@@ -67,9 +67,9 @@ namespace CatDefense
 
         public void RemoveSelection()
         {
-            if(_currentTower)
-                _currentTower.SetSelected(false);
-            _currentTower = null;
+            if(CurrentTower)
+                CurrentTower.SetSelected(false);
+            CurrentTower = null;
             _text.text = string.Empty;
             ActivateRelevantUpgradeButton(null);
             _upgradeCost.text = "Upgrade cost: ";

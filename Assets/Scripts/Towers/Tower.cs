@@ -3,23 +3,24 @@ using UnityEngine;
 
 namespace CatDefense
 {
-	[RequireComponent(typeof(TowerWeapon))]
 	public class Tower : Placeable
 	{
 		[SerializeField] private float _fireRate = 1;
-		[SerializeField] private Transform _cannonModel;
+		[SerializeField] private Transform _weaponContainer;
 		[SerializeField] private Animator _animator;
 		[SerializeField] private float _range = 100;
 		[SerializeField] private int _value = 50;
 		[SerializeField] private int[] _upgradeCost;
+		[SerializeField] private TowerWeapon _weapon;
+		[SerializeField] private RangeRing _rangeRing;
 
-		private TowerWeapon _weapon;
-		private bool _selected;
-
-		public Tower()
+		[SerializeField] private Upgrade _currentUpgrade;
+		public Upgrade CurrentUpgrade
 		{
-			UpgradeLevel = 0;
+			get { return _currentUpgrade; }
 		}
+		
+		private bool _selected;
 
 		public override int Value
 		{
@@ -57,12 +58,14 @@ namespace CatDefense
 
 		private void OnMouseEnter()
 		{
-			_weapon.DisplayRange(_range, true);
+			_rangeRing.Enable(true);
+			_rangeRing.SetRange(_range);
 		}
 		
 		private void OnMouseExit()
 		{
-			_weapon.DisplayRange(_range, _selected);
+			_rangeRing.Enable(_selected);
+			_rangeRing.SetRange(_range);
 		}
 
 		private void OnMouseUpAsButton()
@@ -76,7 +79,7 @@ namespace CatDefense
 			if (enemies.Length == 0) return;
 			GameObject closest = enemies.OrderBy(e => Vector3.Distance(e.transform.position, transform.position)).First();
 			if(Vector3.Distance(closest.transform.position, transform.position) > _range) return;
-			_cannonModel.LookAt(closest.transform);
+			_weaponContainer.LookAt(closest.transform);
 			_animator.SetTrigger("Fire");
 			_weapon.Fire(closest);
 		}
@@ -84,14 +87,18 @@ namespace CatDefense
 		public void SetSelected(bool selected)
 		{
 			_selected = selected;
-			_weapon.DisplayRange(_range, selected);
+			_rangeRing.Enable(selected);
+			_rangeRing.SetRange(_range);
 		}
 
-		public void Upgrade()
+		public void Upgrade(Upgrade upgrade)
 		{
 			if (GlobalData.Money < _upgradeCost[UpgradeLevel]) return;
 			GlobalData.Money -= _upgradeCost[UpgradeLevel];
 			UpgradeLevel++;
+			_currentUpgrade = upgrade;
+			Destroy(_weapon.gameObject);
+			_weapon = Instantiate(upgrade.Weapon, Vector3.zero, Quaternion.identity, _weaponContainer);
 		}
 	}
 }

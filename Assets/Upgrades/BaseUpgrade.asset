@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a073a9cf21f2f14db9587f78d3ab257, type: 3}
+  m_Name: BaseUpgrade
+  m_EditorClassIdentifier: 
+  _nextUpgrades: []
+  _icon: {fileID: 0}
+  _weapon: {fileID: 114000654335805266, guid: 1792d4f9fdf58214e8b8ee715997bf9b, type: 2}

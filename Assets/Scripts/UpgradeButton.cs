@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +10,15 @@ namespace CatDefense
 	public class UpgradeButton : MonoBehaviour
 	{
 		private Button _mainButton;
+
+		[SerializeField] private TowerSelection _selection;
 		[SerializeField] private GameObject _buttonContainer;
-		[SerializeField] private Button[] _upgrades;
+		[SerializeField] private Button _upgradeButtonPrefab;
+
+		private List<Button> _buttons;
+		
 		public bool interactable
 		{
-			get { return _mainButton.interactable; }
 			set { _mainButton.interactable = value; }
 		}
 
@@ -20,22 +26,27 @@ namespace CatDefense
 		{
 			_mainButton = GetComponent<Button>();
 			_mainButton.onClick.AddListener(ToggleRollout);
-			foreach (Button upgrade in _upgrades)
-			{
-				upgrade.onClick.AddListener( delegate
-				{
-					ToggleRollout();
-					if (OnUpgradeSelected != null) OnUpgradeSelected();
-				});
-			}
 		}
 
 		private void ToggleRollout()
 		{
 			_buttonContainer.SetActive(!_buttonContainer.activeSelf);
+			if (_buttons.Any()) return;
+			foreach (Upgrade upgrade in _selection.CurrentTower.CurrentUpgrade.NextUpgrades)
+			{
+				Button button = Instantiate(_upgradeButtonPrefab, transform);
+				button.image.sprite = upgrade.Icon;
+				Upgrade u = upgrade;
+				button.onClick.AddListener( delegate
+				{
+					ToggleRollout();
+					if (OnUpgradeSelected != null) OnUpgradeSelected(u);
+				});
+				_buttons.Add(button);
+			}
 		}
 
-		public event Action OnUpgradeSelected;
+		public event Action<Upgrade> OnUpgradeSelected;
 
 		public void Collapse()
 		{

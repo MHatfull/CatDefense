@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 65435319286080136}
   - component: {fileID: 54523742794724296}
   m_Layer: 0
-  m_Name: Mage
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,10 +1766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d267bea619a21f41b25d2759ae80c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeRing: {fileID: 114886153298692718}
   _projectile: {fileID: 1490622165817656, guid: 139ed86b5f199d843be32817469fc502,
     type: 2}
-  _cannonLocation: {fileID: 4903424800075280}
 --- !u!114 &114886153298692718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1793,11 +1791,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireRate: 1
-  _cannonModel: {fileID: 4993759068578840}
+  _weaponContainer: {fileID: 0}
   _animator: {fileID: 95053256793556036}
   _range: 10
   _value: 50
   _upgradeCost: 0a000000140000001e00000028000000
+  _weapon: {fileID: 0}
+  _rangeRing: {fileID: 0}
+  _currentUpgrade: {fileID: 0}
 --- !u!119 &119625600442550274
 Projector:
   m_ObjectHideFlags: 1

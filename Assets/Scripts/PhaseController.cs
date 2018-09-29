@@ -35,7 +35,6 @@ namespace CatDefense
 			    || _currentlySpawning > 0
 			    || FindObjectsOfType<Creep>().Any()) return;
 			
-			Debug.Log("starting wave");
 			StartWave();
 		}
 
