@@ -15,7 +15,7 @@ namespace CatDefense
 		public delegate void WaveCompleteHandler();
 		public event WaveCompleteHandler OnWaveComplete;
 
-		public bool SpawnComplete
+		public bool NoMoreWaves
 		{
 			get { return _waveNumber >= _waves.Length; }
 		}
@@ -27,14 +27,17 @@ namespace CatDefense
 
 		private IEnumerator Spawn()
 		{
-			if (!_target || SpawnComplete)
+			Debug.Log("starting wave " + _waveNumber);
+			if (!_target || NoMoreWaves)
 			{
+				Debug.Log("exiting as no more waves or target dead");
 				if (OnWaveComplete != null) OnWaveComplete();
 				yield break;
 			}
 
 			foreach (Release release in _waves[_waveNumber].Releases)
 			{
+				Debug.Log("this release contains " + release.Size);
 				for (int i = 0; i < release.Size; i++)
 				{
 					yield return new WaitForSeconds(release.ReleaseDelay); 
@@ -42,7 +45,8 @@ namespace CatDefense
 					newCreep.SetDestination(_target.position);
 				}
 			}
-			
+
+			_waveNumber++;
 			if (OnWaveComplete != null) OnWaveComplete();
 		}
 		
