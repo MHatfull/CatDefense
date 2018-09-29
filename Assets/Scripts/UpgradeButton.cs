@@ -15,7 +15,7 @@ namespace CatDefense
 		[SerializeField] private GameObject _buttonContainer;
 		[SerializeField] private Button _upgradeButtonPrefab;
 
-		private List<Button> _buttons;
+		private readonly List<Button> _buttons = new List<Button>();
 		
 		public bool interactable
 		{
@@ -51,6 +51,11 @@ namespace CatDefense
 		public void Collapse()
 		{
 			_buttonContainer.SetActive(false);
+		}
+
+		public void SetSprite(Sprite icon)
+		{
+			_mainButton.image.sprite = icon;
 		}
 	}
 }

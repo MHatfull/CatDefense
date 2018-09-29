@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BaseUpgrade
   m_EditorClassIdentifier: 
   _nextUpgrades: []
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 5d1d51ce1560d254db60f4cb6c26cdaf, type: 3}
   _weapon: {fileID: 114000654335805266, guid: 1792d4f9fdf58214e8b8ee715997bf9b, type: 2}

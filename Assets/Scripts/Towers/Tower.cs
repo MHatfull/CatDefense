@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace CatDefense
 {
@@ -39,6 +40,8 @@ namespace CatDefense
 		{
 			get { return _upgradeCost[UpgradeLevel]; }
 		}
+
+		//public List<Upgrade> Upgrades { get; private set; } = new List<Upgrade>();
 
 		public override Placeable Clone(Vector3 hitPoint)
 		{

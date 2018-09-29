@@ -17,9 +17,18 @@ namespace CatDefense
         {
             _text.text = string.Empty;
             ActivateRelevantUpgradeButton(null);
-            foreach (UpgradeButton t in _upgradeButtons)
+            for (int i = 0; i < _upgradeButtons.Length; i++)
             {
-                t.OnUpgradeSelected += (upgrade) =>
+//                if (CurrentTower.UpgradeLevel <= i)
+//                {
+//                    _upgradeButtons[i].SetSprite(CurrentTower.Upgrades[i].Icon);
+//                }
+//                else
+//                {
+//                    _upgradeButtons[i].SetSprite(null);
+//                }
+
+                _upgradeButtons[i].OnUpgradeSelected += (upgrade) =>
                 {
                     if(CurrentTower) CurrentTower.Upgrade(upgrade);
                     ActivateRelevantUpgradeButton(CurrentTower);
