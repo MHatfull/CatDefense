@@ -73,5 +73,4 @@ Shader "MAG/Blackhole" {
         }
     }
     FallBack "Diffuse"
-    CustomEditor "ShaderForgeMaterialInspector"
 }

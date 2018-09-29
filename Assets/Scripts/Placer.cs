@@ -6,6 +6,8 @@ namespace CatDefense
     public class Placer : MonoBehaviour
     {
         [SerializeField] private RangeRing _rangeRing;
+        [SerializeField] private Color _placingColor;
+        [SerializeField] private Color _errorColor;
         public Placeable CurrentlyPlacing { get; private set; }
 
         private void Update()
@@ -15,10 +17,15 @@ namespace CatDefense
             if (!Physics.Raycast(ray, out hit)) return;
             transform.position = hit.point;
             if (!CurrentlyPlacing) return;
-            if (!Input.GetMouseButtonDown(0)) return;
             if (EventSystem.current.IsPointerOverGameObject()) return;
             if (GlobalData.Money < CurrentlyPlacing.Value) return;
-            if (!hit.collider.gameObject.CompareTag("Ground")) return;
+            if (!hit.collider.gameObject.CompareTag("Ground"))
+            {
+                _rangeRing.SetColor(_errorColor);
+                return;
+            }
+            _rangeRing.SetColor(_placingColor);
+            if (!Input.GetMouseButtonDown(0)) return;
             CurrentlyPlacing.Clone(hit.point);
             GlobalData.Money -= CurrentlyPlacing.Value;
             SetCurrentTower(null);
@@ -31,6 +38,7 @@ namespace CatDefense
             {
                 Tower tower = placeable.GetComponent<Tower>();
                 if(tower) _rangeRing.SetRange(tower.Range);
+                else _rangeRing.SetRange(1);
             }
             CurrentlyPlacing = placeable;
         }

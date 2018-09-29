@@ -1,23 +1,82 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace CatDefense
 {
 	public class Spawner : MonoBehaviour
 	{
-		[SerializeField] private NavMeshAgent _creep;
+		[SerializeField] private Wave[] _waves;
 		[SerializeField] private Transform _target;
 
-		private void Start()
+		private int _waveNumber = 0;
+
+		public delegate void WaveCompleteHandler();
+		public event WaveCompleteHandler OnWaveComplete;
+
+		public bool SpawnComplete
 		{
-			InvokeRepeating("Spawn", 0, 1);
+			get { return _waveNumber >= _waves.Length; }
+		}
+		
+		public void StartWave()
+		{
+			StartCoroutine(Spawn());
 		}
 
-		private void Spawn()
+		private IEnumerator Spawn()
 		{
-			if (!_target) return;
-			NavMeshAgent newCreep = Instantiate(_creep, transform.position, Quaternion.identity);
-			newCreep.SetDestination(_target.position);
+			if (!_target || SpawnComplete)
+			{
+				if (OnWaveComplete != null) OnWaveComplete();
+				yield break;
+			}
+
+			foreach (Release release in _waves[_waveNumber].Releases)
+			{
+				for (int i = 0; i < release.Size; i++)
+				{
+					yield return new WaitForSeconds(release.ReleaseDelay); 
+					Creep newCreep = Instantiate(release.Creep, transform.position, Quaternion.identity);
+					newCreep.SetDestination(_target.position);
+				}
+			}
+			
+			if (OnWaveComplete != null) OnWaveComplete();
+		}
+		
+		[Serializable]
+		private class Wave
+		{
+			[SerializeField] private Release[] _releases;
+			public Release[] Releases
+			{
+				get { return _releases; }
+			}
+		}
+		
+		[Serializable]
+		private class Release
+		{
+			[SerializeField] private int _size;
+			public int Size
+			{
+				get { return _size; }
+			}
+			
+			[SerializeField] private Creep _creep;
+			public Creep Creep
+			{
+				get { return _creep; }
+			}
+
+			[SerializeField] private float _releaseDelay;
+
+			public float ReleaseDelay
+			{
+				get { return _releaseDelay; }
+			}
 		}
 	}
 }

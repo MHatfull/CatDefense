@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _value: 10
+  _navMeshAgent: {fileID: 195467641290203448}
 --- !u!136 &136376643404355480
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CatDefense
 {
@@ -8,6 +9,7 @@ namespace CatDefense
 	{
 		[SerializeField] private float _health = 100;
 		[SerializeField] private int _value = 10;
+		[SerializeField] private NavMeshAgent _navMeshAgent;
 
 		public void DealDamage(float amount)
 		{
@@ -19,5 +21,9 @@ namespace CatDefense
 			}
 		}
 
+		public void SetDestination(Vector3 targetPosition)
+		{
+			_navMeshAgent.SetDestination(targetPosition);
+		}
 	}
 }

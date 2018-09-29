@@ -18,5 +18,11 @@ namespace CatDefense
 			_projector.nearClipPlane = -r;
 			_projector.orthographicSize = r;
 		}
+
+		public void SetColor(Color color)
+		{
+			_projector.material.SetColor("_EdgeColor", color);
+			_projector.material.SetColor("_FillColor", new Color(color.r, color.g, color.b, color.a * 0.5f));
+		}
 	}
 }
